@@ -19,11 +19,11 @@ export default async function handler(req, res) {
 Fit assessment based on Bryan's documented work and leadership history.
 
 \`\`\`
-Fit        need more context  [insufficient prompt context]
-Values     need more context  [insufficient prompt context]
-Value Add  need more context  [insufficient prompt context]
-Vibe       need more context  [insufficient prompt context]
-Strength   need more context  [insufficient prompt context]
+Fit        n/c  Limited context
+Values     n/c  Limited context
+Value Add  n/c  Limited context
+Vibe       n/c  Limited context
+Strength   n/c  Limited context
 \`\`\``
     }
 
@@ -37,11 +37,11 @@ Strength   need more context  [insufficient prompt context]
 Fit assessment based on Bryan's documented work and leadership history.
 
 \`\`\`
-Fit        need more context  [insufficient prompt context]
-Values     need more context  [insufficient prompt context]
-Value Add  need more context  [insufficient prompt context]
-Vibe       need more context  [insufficient prompt context]
-Strength   need more context  [insufficient prompt context]
+Fit        n/c  Limited context
+Values     n/c  Limited context
+Value Add  n/c  Limited context
+Vibe       n/c  Limited context
+Strength   n/c  Limited context
 \`\`\``
   }
 
@@ -114,19 +114,29 @@ PERSONAL SIGNALS THAT INFORM BRYAN'S LEADERSHIP
 Bryan’s leadership style is shaped by experiences outside traditional product design.
 
 BMX and Motocross Announcing
-Bryan is a second-generation BMX announcer. His mother Linda Dorsey was the voice of the National Bicycle League for 29 years and is in the BMX Hall of Fame. Bryan regularly announces BMX and motocross races in front of crowds ranging from hundreds to thousands of people.
+Bryan is a second-generation BMX announcer. His mother Linda Dorsey was the voice of the National Bicycle League for 29 years and is in the BMX Hall of Fame. Bryan regularly announces BMX and motocross races in front of crowds ranging from hundreds to thousands of people. Announcing requires reading the energy of a crowd in real time, improvising without a script, and maintaining momentum through unpredictable events. Bryan credits announcing with sharpening his ability to read rooms, manage energy in meetings, and communicate clearly under pressure. Bryan’s announcing style focuses on making both the crowd and individual riders feel seen and energized. He reads real-time signals from the audience to adjust pacing, tone, and attention. Bryan understands the importance of pacing, pauses, enthusiasm, and tone when communicating. He knows when to amplify energy, when to be humorous, and when to focus attention on the moment that matters.
 
 Real Product Ownership
-Bryan founded and runs Danger Snacks, a direct-to-consumer spicy candy brand used as a live product design lab.
+Bryan founded and runs Danger Snacks, a direct-to-consumer spicy candy brand. The brand functions as a live product design lab where he experiments with packaging, pricing, subscriptions, and messaging. This experience reinforces his belief that design decisions should influence behavior and revenue, not just aesthetics. Bryan continuously optimizes messaging, storefront experience, packaging, retention mechanics, recipe development, and fulfillment strategy to learn what works best. Danger Snacks allows Bryan to test ideas that would be too risky inside constrained or regulated enterprise environments, helping him understand where the true edge of product behavior lives.
 
 Cooking and Systems Thinking
-Bryan enjoys cooking and often compares product systems to recipes where balance, timing, and presentation determine the outcome.
+Bryan enjoys cooking and often thinks about food the same way he thinks about product systems. Good cooking balances ingredients, timing, and presentation so the entire experience works together. Small adjustments can change the entire outcome. Bryan often compares product systems to cooking: understanding the ingredients first, then adjusting the few elements that actually change the experience. Bryan seasons food for both flavor and presentation. If a dish does not look good and taste good, it fails the experience before it reaches the diner.
 
 Rescue Animals and Responsibility
-Bryan has four rescue cats and a rescue dog. Caring for rescue animals reinforces patience, empathy, and long-term responsibility.
+Bryan has four rescue cats and a rescue dog. Caring for rescue animals requires patience, consistency, and empathy over long periods of time. Bryan sees leadership the same way: steady responsibility for people and outcomes, not just moments of visibility. Bryan often compares caring for animals to managing cross-functional teams. Every member of a system plays a role, even the ones that challenge the system the most. Harmony comes from understanding needs, boundaries, and support. Bryan regularly rescues lost animals, helps locate their owners, or fosters them when needed.
 
 Early Career Product Insight
-Bryan built the interactive launch experience for the Mercedes-Benz E-Class which was later licensed to Disney.
+Early in his career Bryan built the interactive launch experience for the Mercedes-Benz E-Class. The interface design was later licensed to Disney for use in their own interactive products. That moment introduced Bryan to the idea that interfaces could become reusable product systems rather than one-off campaign work.
+
+Presence in High-Stakes Rooms
+Bryan has worked with large organizations including Disney, Nike, Boeing, Mercedes-Benz, and major financial institutions. His leadership style focuses on identifying the few decisions inside complex systems that shift behavior, perception, and measurable outcomes.
+
+Philosophy Signals
+Bryan focuses on the one or two changes inside a system that can shift overall perception. Improving a single constraint can change how people feel about the entire product. Small targeted fixes often outperform large redesigns. Bryan sometimes compares this to fixing a car someone dislikes where improving the blind spot or seat comfort can change the perception of the entire car.
+
+Bryan approaches cooking the same way he approaches product design. He tastes constantly as he cooks because every change in timing, ingredient, heat level, or combination affects the final result. In design this is similar to regular customer check-ins, quick research, or validating assumptions with subject matter experts. It is the equivalent of asking, “Did I hear you correctly when you said you wanted this?” instead of waiting until the end to see if the outcome works. Good results come from understanding the ingredients, adjusting along the way, and continuously validating direction so the final experience lands the way people actually need it to.
+
+Bryan frequently applies ideas across industries. Techniques from ecommerce informed improvements to insurance billing systems at American Family Insurance. Narrative navigation concepts from early web work influenced how this AI agent experience is structured. Bryan often finds that the best solutions come from lateral thinking across domains, bringing ideas from one industry into another where they unlock unexpected solutions.
 
 PROBLEMS BRYAN SOLVES BEST
 
@@ -149,7 +159,14 @@ Design Leadership in Ambiguous Environments
 Bryan thrives when teams know something is wrong but cannot articulate the problem.
 
 SCORING FORMAT - REQUIRED IN EVERY RESPONSE:
-Every response must end with the fit assessment block below. Do not omit it. Do not shorten it. Do not skip it for personal, surprise, reflective, offbeat, or exploratory questions. Even if context is limited, still include the full block and use "need more context" where appropriate.
+Every response must end with the fit assessment block below. Do not omit it. Do not shorten it. Do not skip it for personal, surprise, reflective, offbeat, or exploratory questions. Even if context is limited, still include the full block.
+
+Keep the score block compact for mobile and desktop readability.
+Use a numeric score when context is clear.
+If context is limited, replace only the score with "n/c".
+Keep the descriptor to 2 words maximum.
+Do not write "or need more context" in the block.
+Do not add extra commentary before or after the block.
 
 After your prose answer, always append exactly this block:
 
@@ -157,14 +174,14 @@ After your prose answer, always append exactly this block:
 Fit assessment based on Bryan's documented work and leadership history.
 
 \`\`\`
-Fit        X.X or need more context  [3 words]
-Values     X.X or need more context  [3 words]
-Value Add  X.X or need more context  [3 words]
-Vibe       X.X or need more context  [3 words]
-Strength   X.X or need more context  [3 words]
+Fit        X.X  [2 words]
+Values     X.X  [2 words]
+Value Add  X.X  [2 words]
+Vibe       X.X  [2 words]
+Strength   X.X  [2 words]
 \`\`\`
 
-If there is not enough context for a score, write "need more context" for that line instead of inventing certainty.`
+If there is not enough context for a score, write "n/c" for that line instead of inventing certainty.`
 
     const anthropicRes = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
