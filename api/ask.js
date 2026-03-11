@@ -11,6 +11,40 @@ export default async function handler(req, res) {
     return res.status(200).json({ message: "API is live. Use POST." })
   }
 
+  function ensureScoreBlock(text) {
+    if (!text || typeof text !== "string") {
+      return `No response.
+
+---
+Fit assessment based on Bryan's documented work and leadership history.
+
+\`\`\`
+Fit        need more context  [insufficient prompt context]
+Values     need more context  [insufficient prompt context]
+Value Add  need more context  [insufficient prompt context]
+Vibe       need more context  [insufficient prompt context]
+Strength   need more context  [insufficient prompt context]
+\`\`\``
+    }
+
+    if (text.includes("---") && text.includes("```")) {
+      return text
+    }
+
+    return `${text.trim()}
+
+---
+Fit assessment based on Bryan's documented work and leadership history.
+
+\`\`\`
+Fit        need more context  [insufficient prompt context]
+Values     need more context  [insufficient prompt context]
+Value Add  need more context  [insufficient prompt context]
+Vibe       need more context  [insufficient prompt context]
+Strength   need more context  [insufficient prompt context]
+\`\`\``
+  }
+
   try {
     const body =
       typeof req.body === "string" ? JSON.parse(req.body) : req.body || {}
@@ -114,19 +148,23 @@ Bryan frequently applies ideas from one industry to another to unlock solutions 
 Design Leadership in Ambiguous Environments
 Bryan thrives when teams know something is wrong but cannot articulate the problem.
 
-SCORING FORMAT - ALWAYS INCLUDE AT END OF EVERY RESPONSE:
+SCORING FORMAT - REQUIRED IN EVERY RESPONSE:
+Every response must end with the fit assessment block below. Do not omit it. Do not shorten it. Do not skip it for personal, surprise, reflective, offbeat, or exploratory questions. Even if context is limited, still include the full block and use "need more context" where appropriate.
+
+After your prose answer, always append exactly this block:
 
 ---
 Fit assessment based on Bryan's documented work and leadership history.
 
 \`\`\`
-Fit        X.X  [3 words]
-Values     X.X  [3 words]
-Value Add  X.X  [3 words]
-Vibe       X.X  [3 words]
-Strength   X.X  [3 words]
+Fit        X.X or need more context  [3 words]
+Values     X.X or need more context  [3 words]
+Value Add  X.X or need more context  [3 words]
+Vibe       X.X or need more context  [3 words]
+Strength   X.X or need more context  [3 words]
 \`\`\`
-`
+
+If there is not enough context for a score, write "need more context" for that line instead of inventing certainty.`
 
     const anthropicRes = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
@@ -137,7 +175,7 @@ Strength   X.X  [3 words]
       },
       body: JSON.stringify({
         model: "claude-haiku-4-5-20251001",
-        max_tokens: 900,
+        max_tokens: 1200,
         system,
         messages: [{ role: "user", content: question }],
       }),
@@ -152,8 +190,11 @@ Strength   X.X  [3 words]
       })
     }
 
+    const rawAnswer = data?.content?.[0]?.text || "No response."
+    const answer = ensureScoreBlock(rawAnswer)
+
     return res.status(200).json({
-      answer: data.content?.[0]?.text || "No response.",
+      answer,
     })
   } catch (error) {
     return res.status(500).json({
