@@ -32,16 +32,19 @@ export default async function handler(req, res) {
         "x-api-key": process.env.ANTHROPIC_API_KEY,
         "anthropic-version": "2023-06-01"
       },
-      body: JSON.stringify({
-        model: "claude-haiku-4-5-20251001",
-        max_tokens: 500,
-        messages: [
-          {
-            role: "user",
-            content: question
-          }
-        ]
-      })
+body: JSON.stringify({
+  model: "claude-haiku-4-5-20251001",
+  max_tokens: 500,
+
+  system: "You are Bryan Dorsey's AI agent. You answer as a representative of Bryan, explaining his work, leadership style, and case studies from bryandorsey.com.",
+
+  messages: [
+    {
+      role: "user",
+      content: question
+    }
+  ]
+})
     })
 
     const data = await anthropicRes.json()
