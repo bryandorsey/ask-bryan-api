@@ -33,8 +33,8 @@ export default async function handler(req, res) {
         "anthropic-version": "2023-06-01"
       },
       body: JSON.stringify({
-        model: "claude-3-haiku-20240307",
-        max_tokens: 400,
+        model: "claude-haiku-4-5-20251001",
+        max_tokens: 500,
         messages: [
           {
             role: "user",
@@ -48,7 +48,7 @@ export default async function handler(req, res) {
 
     if (!anthropicRes.ok) {
       return res.status(anthropicRes.status).json({
-        error: "Anthropic request failed",
+        error: data?.error?.message || "Anthropic request failed",
         details: data
       })
     }
