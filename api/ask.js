@@ -1,36 +1,65 @@
 export default async function handler(req, res) {
+  res.setHeader("Access-Control-Allow-Origin", "*")
+  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS")
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type")
 
-  if (req.method !== "POST") {
-    return res.status(200).json({
-      message: "API is live. Use POST."
-    })
+  if (req.method === "OPTIONS") {
+    return res.status(200).end()
   }
 
-  const body = typeof req.body === "string"
-    ? JSON.parse(req.body)
-    : req.body
+  if (req.method !== "POST") {
+    return res.status(200).json({ message: "API is live. Use POST." })
+  }
 
-  const question = body.question
+  try {
+    const body =
+      typeof req.body === "string" ? JSON.parse(req.body) : req.body || {}
 
-  const response = await fetch("https://api.anthropic.com/v1/messages", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "x-api-key": process.env.ANTHROPIC_API_KEY,
-      "anthropic-version": "2023-06-01"
-    },
-    body: JSON.stringify({
-      model: "claude-3-haiku-20240307",
-      max_tokens: 400,
-      messages: [
-        { role: "user", content: question }
-      ]
+    const question = body.question
+
+    if (!question) {
+      return res.status(400).json({ error: "Missing question" })
+    }
+
+    if (!process.env.ANTHROPIC_API_KEY) {
+      return res.status(500).json({ error: "Missing ANTHROPIC_API_KEY" })
+    }
+
+    const anthropicRes = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-api-key": process.env.ANTHROPIC_API_KEY,
+        "anthropic-version": "2023-06-01"
+      },
+      body: JSON.stringify({
+        model: "claude-3-haiku-20240307",
+        max_tokens: 400,
+        messages: [
+          {
+            role: "user",
+            content: question
+          }
+        ]
+      })
     })
-  })
 
-  const data = await response.json()
+    const data = await anthropicRes.json()
 
-  res.status(200).json({
-    answer: data.content?.[0]?.text || "No response."
-  })
+    if (!anthropicRes.ok) {
+      return res.status(anthropicRes.status).json({
+        error: "Anthropic request failed",
+        details: data
+      })
+    }
+
+    return res.status(200).json({
+      answer: data.content?.[0]?.text || "No response."
+    })
+  } catch (error) {
+    return res.status(500).json({
+      error: "Server crash",
+      details: String(error)
+    })
+  }
 }
