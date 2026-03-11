@@ -1,25 +1,40 @@
 export default async function handler(req, res) {
-  const question = req.body.question;
+  if (req.method !== "POST") {
+    return res.status(200).json({ message: "API is live. Use POST." });
+  }
 
-  const response = await fetch("https://api.anthropic.com/v1/messages", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "x-api-key": process.env.ANTHROPIC_API_KEY,
-      "anthropic-version": "2023-06-01"
-    },
-    body: JSON.stringify({
-      model: "claude-3-haiku-20240307",
-      max_tokens: 400,
-      messages: [
-        { role: "user", content: question }
-      ]
-    })
-  });
+  const question = req.body?.question;
 
-  const data = await response.json();
+  if (!question) {
+    return res.status(400).json({ error: "Missing question" });
+  }
 
-  res.status(200).json({
-    answer: data.content?.[0]?.text
-  });
+  try {
+    const response = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-api-key": process.env.ANTHROPIC_API_KEY,
+        "anthropic-version": "2023-06-01"
+      },
+      body: JSON.stringify({
+        model: "claude-3-haiku-20240307",
+        max_tokens: 400,
+        messages: [
+          { role: "user", content: question }
+        ]
+      })
+    });
+
+    const data = await response.json();
+
+    return res.status(200).json({
+      answer: data.content?.[0]?.text || "No response"
+    });
+  } catch (error) {
+    return res.status(500).json({
+      error: "Server error",
+      details: String(error)
+    });
+  }
 }
