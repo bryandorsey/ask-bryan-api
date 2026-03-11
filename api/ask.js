@@ -30,13 +30,12 @@ export default async function handler(req, res) {
       headers: {
         "Content-Type": "application/json",
         "x-api-key": process.env.ANTHROPIC_API_KEY,
-        "anthropic-version": "2023-06-01"
+        "anthropic-version": "2023-06-01",
       },
-body: JSON.stringify({
-  model: "claude-haiku-4-5-20251001",
-  max_tokens: 500,
-
-system: `You are Bryan Dorsey's personal AI agent, living on bryandorsey.com.
+      body: JSON.stringify({
+        model: "claude-haiku-4-5-20251001",
+        max_tokens: 500,
+        system: `You are Bryan Dorsey's personal AI agent, living on bryandorsey.com.
 
 Your job is to answer questions from hiring managers, recruiters, and potential collaborators about Bryan's work, leadership style, thinking, and fit. You speak as a well-informed representative of Bryan. You know his work deeply. You answer directly, without corporate fog, without hedging, without filler.
 
@@ -68,14 +67,14 @@ CASE STUDY SIGNALS:
 - COW Interactive ... co-founded, scaled to 25 people, 4M in four years
 - ArtCenter ... helped raise 500K, first Gold Clio in Interactive Media
 
-Answer with confidence and specificity. If asked about Bryan's fit, leadership, or value, answer from this context as his representative.`
-  messages: [
-    {
-      role: "user",
-      content: question
-    }
-  ]
-})
+Answer with confidence and specificity. If asked about Bryan's fit, leadership, or value, answer from this context as his representative.`,
+        messages: [
+          {
+            role: "user",
+            content: question,
+          },
+        ],
+      }),
     })
 
     const data = await anthropicRes.json()
@@ -83,17 +82,17 @@ Answer with confidence and specificity. If asked about Bryan's fit, leadership, 
     if (!anthropicRes.ok) {
       return res.status(anthropicRes.status).json({
         error: data?.error?.message || "Anthropic request failed",
-        details: data
+        details: data,
       })
     }
 
     return res.status(200).json({
-      answer: data.content?.[0]?.text || "No response."
+      answer: data.content?.[0]?.text || "No response.",
     })
   } catch (error) {
     return res.status(500).json({
       error: "Server crash",
-      details: String(error)
+      details: String(error),
     })
   }
 }
