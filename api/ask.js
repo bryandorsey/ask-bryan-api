@@ -11,6 +11,45 @@ export default async function handler(req, res) {
     return res.status(200).json({ message: "API is live. Use POST." })
   }
 
+  function hasScoreBlock(text) {
+    if (!text || typeof text !== "string") return false
+
+    const hasFitLine = /(^|\n)Fit\s+/m.test(text)
+    const hasValuesLine = /(^|\n)Values\s+/m.test(text)
+    const hasValueAddLine = /(^|\n)Value Add\s+/m.test(text)
+    const hasVibeLine = /(^|\n)Vibe\s+/m.test(text)
+    const hasStrengthLine = /(^|\n)Strength\s+/m.test(text)
+
+    return (
+      hasFitLine &&
+      hasValuesLine &&
+      hasValueAddLine &&
+      hasVibeLine &&
+      hasStrengthLine
+    )
+  }
+
+  function appendFallbackScore(text) {
+    const safeText = (text || "No response.").trim()
+
+    if (hasScoreBlock(safeText)) {
+      return safeText
+    }
+
+    return `${safeText}
+
+---
+Fit assessment based on Bryan's documented work and leadership history.
+
+\`\`\`
+Fit        n/c  Limited view
+Values     n/c  Limited view
+Value Add  n/c  Limited view
+Vibe       n/c  Limited view
+Strength   n/c  Limited view
+\`\`\``
+  }
+
   try {
     const body =
       typeof req.body === "string" ? JSON.parse(req.body) : req.body || {}
@@ -48,32 +87,32 @@ He co-founded COW Interactive in Santa Monica during the early commercial web er
 
 Clients include Disney, Nike, Mercedes-Benz, Boeing, Intel, Motorola, American Family Insurance, Southern California Edison, Charles Schwab, Citibank, Wells Fargo, and others.
 
-He also runs Danger Snacks as a live product design lab.  
-He announces BMX and motocross races 25–35 weekends per year.
+He also runs Danger Snacks as a live product design lab.
+He announces BMX and motocross races 25 to 35 weekends per year.
 
 WHAT BRYAN SOLVES
 
-Fragmented Product Journeys  
+Fragmented Product Journeys
 Reconnects systems where teams own pieces but nobody owns the full experience.
 
-Behavior Change Moments  
+Behavior Change Moments
 Fixes the moment where users hesitate or lose trust.
 
-Complex Enterprise Systems  
+Complex Enterprise Systems
 Finds the simple structural lever hidden inside complexity.
 
-Revenue-Linked Design  
+Revenue-Linked Design
 Connects design decisions to measurable outcomes.
 
-Cross-Industry Thinking  
+Cross-Industry Thinking
 Applies insights from different industries to unlock solutions.
 
 DESIGN PHILOSOPHY
 
-Bryan studies what exists before recommending change.  
-He identifies where a system is bleeding.  
-He closes that gap.  
-Behavior shifts.  
+Bryan studies what exists before recommending change.
+He identifies where a system is bleeding.
+He closes that gap.
+Behavior shifts.
 Revenue follows.
 
 He does not confuse novelty with value.
@@ -88,8 +127,9 @@ Descriptor rules:
 Maximum two words.
 No brackets.
 No explanations inside the block.
-
 If context is limited, use n/c instead of inventing certainty.
+Do not use phrases like "Not applicable" or "Depends entirely".
+Do not output more than one score block.
 
 Format exactly like this:
 
@@ -134,24 +174,8 @@ Strength   X.X  Two words
       })
     }
 
-    let answer = data.content?.[0]?.text || "No response."
-
-    // fallback score block safety
-    if (!answer.includes("Fit assessment based on Bryan")) {
-      answer += `
-
----
-Fit assessment based on Bryan's documented work and leadership history.
-
-\`\`\`
-Fit        n/c  Limited view
-Values     n/c  Limited view
-Value Add  n/c  Limited view
-Vibe       n/c  Limited view
-Strength   n/c  Limited view
-\`\`\`
-`
-    }
+    const rawAnswer = data?.content?.[0]?.text || "No response."
+    const answer = appendFallbackScore(rawAnswer)
 
     return res.status(200).json({
       answer,
