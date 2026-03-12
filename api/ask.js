@@ -39,14 +39,14 @@ export default async function handler(req, res) {
     return `${safeText}
 
 ---
-Fit assessment based on Bryan's documented work, leadership history, and known personal signals described above.
+Fit assessment based on Bryan’s experience and leadership patterns.
 
 \`\`\`
-Fit        n/c  Limited view
-Values     n/c  Limited view
-Value Add  n/c  Limited view
-Vibe       n/c  Limited view
-Strength   n/c  Limited view
+Fit        Context needed
+Values     Context needed
+Value Add  Context needed
+Vibe       Context needed
+Strength   Context needed
 \`\`\``
   }
 
@@ -192,11 +192,11 @@ Every response must end with the fit assessment block.
 Keep descriptors short for mobile readability.
 
 Descriptor rules:
-Maximum two words.
+Maximum two words for descriptors.
 No brackets.
 No explanations inside the block.
-If context is limited, use n/c instead of inventing certainty.
-Do not use phrases like "Not applicable", "Insufficient data", or "Depends entirely".
+If there is not enough context to score a category, write "Context needed".
+Do not use phrases like "n/c", "Not applicable", "Insufficient data", or "Depends entirely".
 Do not output more than one score block.
 
 Format exactly like this:
