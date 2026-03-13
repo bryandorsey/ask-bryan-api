@@ -197,7 +197,7 @@ Many of Bryan's strongest solutions come from lateral thinking across domains.
 
 SCORING FORMAT
 
-Every response must end with the fit assessment block.
+Every response must end with the fit assessment block. Never omit it, even for simple factual questions.
 Keep descriptors short for mobile readability.
 
 Descriptor rules:
