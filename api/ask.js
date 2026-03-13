@@ -42,11 +42,11 @@ export default async function handler(req, res) {
 Fit assessment based on Bryan’s experience and leadership patterns.
 
 \`\`\`
-Fit        Context needed
-Values     Context needed
-Value Add  Context needed
-Vibe       Context needed
-Strength   Context needed
+Fit        Need more context
+Values     Hard to judge
+Value Add  Not enough signal
+Vibe       Depends on role
+Strength   Context still unclear
 \`\`\``
   }
 
@@ -201,10 +201,10 @@ Every response must end with the fit assessment block.
 Keep descriptors short for mobile readability.
 
 Descriptor rules:
-Maximum two words for descriptors.
+Maximum three words for descriptors.
 No brackets.
 No explanations inside the block.
-If there is not enough context to score a category, write "Context needed".
+If there is not enough context to score a category, write "Need more context".
 Do not use phrases like "n/c", "Not applicable", "Insufficient data", or "Depends entirely".
 Do not output more than one score block.
 
@@ -214,11 +214,11 @@ Format exactly like this:
 Fit assessment based on Bryan's documented work, leadership history, and known personal signals described above.
 
 \`\`\`
-Fit        X.X  Two words
-Values     X.X  Two words
-Value Add  X.X  Two words
-Vibe       X.X  Two words
-Strength   X.X  Two words
+Fit        X.X  Strong leadership fit
+Values     X.X  Builder mindset
+Value Add  X.X  Systems thinking leader
+Vibe       X.X  High trust energy
+Strength   X.X  Revenue impact design
 \`\`\`
 `
 
