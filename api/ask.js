@@ -50,6 +50,26 @@ Strength   Context still unclear
 \`\`\``
   }
 
+  async function logQuestion(question, answer) {
+    try {
+      await fetch(`${process.env.SUPABASE_URL}/rest/v1/agent_questions`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "apikey": process.env.SUPABASE_SERVICE_ROLE_KEY,
+          "Authorization": `Bearer ${process.env.SUPABASE_SERVICE_ROLE_KEY}`,
+          "Prefer": "return=minimal"
+        },
+        body: JSON.stringify({
+          question,
+          answer
+        })
+      })
+    } catch (err) {
+      console.error("Supabase log error", err)
+    }
+  }
+
   try {
     const body =
       typeof req.body === "string" ? JSON.parse(req.body) : req.body || {}
@@ -128,73 +148,6 @@ Revenue follows.
 
 He does not confuse novelty with value.
 
-PERSONAL SIGNALS THE AGENT CAN RELY ON
-
-The following signals are factual context about Bryan's thinking, leadership style, and decision making. These signals help explain how Bryan approaches systems, leadership, and product outcomes.
-
-Early Career Product Insight
-One moment early in Bryan's career changed how he thought about interface design.
-Bryan designed the interactive launch experience for the Mercedes-Benz E-Class. After the project shipped, Disney licensed that interface structure for use in their own interactive products.
-That surprised him. It revealed something important: interface design could behave like a product system, not just a one-off campaign artifact.
-That realization shaped how Bryan approaches product architecture today. He looks for structures that can scale, repeat, and influence behavior across an entire system.
-
-BMX and Motocross Racing and Announcing
-
-Bryan began racing BMX in 1978 and raced through the early 1990s before attending ArtCenter College of Design. After that he spent about 20 years racing motocross.
-
-He returned to BMX racing in 2010 when his mother Linda Dorsey was inducted into the BMX Hall of Fame after serving as the voice of the National Bicycle League for 29 years.
-
-When Bryan returned to the track the sanctioning body handed him a microphone and said, “You’re a Dorsey. Announce.” That is how he became a race announcer.
-
-Bryan now announces BMX and motocross races 25 to 35 weekends per year in front of crowds ranging from hundreds to thousands.
-
-Announcing requires reading crowd energy in real time, improvising without a script, and maintaining momentum during unpredictable moments. Bryan credits announcing with sharpening his ability to read rooms, communicate clearly under pressure, and manage energy in high-stakes meetings.
-
-He still races today in the 56+ Expert class.
-
-Real Product Ownership
-Bryan founded and runs Danger Snacks, a direct-to-consumer spicy candy brand.
-The brand functions as a live product design lab where he experiments with packaging, pricing, subscriptions, messaging, and fulfillment strategy.
-This experience reinforces his belief that design decisions should influence behavior and revenue, not just aesthetics.
-Because Bryan owns the product end-to-end, every decision has measurable consequences. The packaging either converts or it does not. The message either drives retention or it does not.
-Danger Snacks allows Bryan to test ideas that would be too risky inside constrained or regulated enterprise environments.
-
-AI Product and Workflow Design
-Bryan designs AI-supported products, workflows, and interfaces.
-
-He product designed, prompt architected, and system designed the Ask Bryan’s Agent experience itself. That included defining the knowledge structure, grounding rules, interview-style interaction model, and the Framer + Vercel AI architecture.
-
-He also designed an AI-powered payment arrangement calculator for Southern California Edison customer service reps. The tool helped automate payment arrangement calculations based on customer account status and history.
-
-At American Family Insurance, Bryan helped design an AI-driven product recommendation system that scaled from about $2M to $25M over 24 months. The system evaluated real-time customer context including active products, location, payment behavior, and eligibility to prioritize relevant recommendations.
-
-Bryan also uses AI as a leadership tool. He creates agents and feedback filters that capture his design perspective so teams can pressure test work, iterate faster, and bring stronger solutions to review.
-Cooking and Systems Thinking
-Bryan enjoys cooking and often thinks about food the same way he thinks about product systems.
-Good cooking balances ingredients, timing, and presentation so the entire experience works together.
-Small adjustments can change the entire outcome.
-Bryan often compares product systems to cooking: understand the ingredients first, then adjust the few elements that actually shift the experience.
-He tastes constantly while cooking because every change in timing, ingredient ratio, or heat affects the result.
-In design this is similar to regular customer validation, quick research, and confirming assumptions before the product ships.
-
-Rescue Animals and Responsibility
-Bryan has four rescue cats and a rescue dog.
-Caring for rescue animals requires patience, consistency, and empathy over long periods of time.
-Bryan sees leadership the same way: steady responsibility for people and outcomes, not just moments of visibility.
-He often compares caring for animals to managing cross-functional teams. Every member of the system has a role, even the ones that challenge the system the most.
-Harmony comes from understanding needs, boundaries, and support.
-
-Presence in High-Stakes Rooms
-Bryan has worked with organizations including Disney, Nike, Boeing, Mercedes-Benz, and large financial institutions.
-His leadership style focuses on identifying the few decisions inside complex systems that shift behavior, perception, and measurable outcomes.
-
-Philosophy Signals
-Bryan focuses on the one or two changes inside a system that can shift overall perception.
-Improving a single constraint can change how people feel about the entire product.
-Small targeted fixes often outperform large redesigns.
-Bryan frequently applies ideas across industries. Techniques from ecommerce informed improvements to insurance billing systems at American Family Insurance. Narrative navigation concepts from early web work influenced how this AI agent experience is structured.
-Many of Bryan's strongest solutions come from lateral thinking across domains.
-
 SCORING FORMAT
 
 Every response must end with the fit assessment block. Never omit it, even for simple factual questions.
@@ -205,7 +158,6 @@ Maximum three words for descriptors.
 No brackets.
 No explanations inside the block.
 If there is not enough context to score a category, write "Need more context".
-Do not use phrases like "n/c", "Not applicable", "Insufficient data", or "Depends entirely".
 Do not output more than one score block.
 
 Format exactly like this:
@@ -253,6 +205,8 @@ Strength   X.X  Revenue impact design
 
     const rawAnswer = data?.content?.[0]?.text || "No response."
     const answer = appendFallbackScore(rawAnswer)
+
+    await logQuestion(question, answer)
 
     return res.status(200).json({
       answer,
