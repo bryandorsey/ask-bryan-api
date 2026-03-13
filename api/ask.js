@@ -109,9 +109,12 @@ Connects design decisions to measurable outcomes.
 Cross-Industry Thinking
 Applies insights from different industries to unlock solutions.
 
+AI Product Thinking
+Designs AI-supported tools, workflows, prompts, and interfaces that help people make better decisions faster.
+
 COMMON TOPICS PEOPLE ASK ABOUT
 
-Bryan has relevant experience across many of the topics recruiters and hiring managers commonly ask about, including dashboards, design systems, big data, compliance, native mobile, responsive web, internal tools, customer-facing products, UX research, prototyping, fintech, ecommerce, storytelling, accessibility, analytics, Figma, components, stakeholder management, cross-functional teams, agile environments, human-centered design, design thinking, design ops, hiring, mentoring, roadmap thinking, prioritization, experimentation, journey mapping, information architecture, developer collaboration, and executive communication.
+Bryan has relevant experience across many of the topics recruiters and hiring managers commonly ask about, including dashboards, design systems, big data, compliance, native mobile, responsive web, internal tools, customer-facing products, UX research, prototyping, fintech, ecommerce, storytelling, accessibility, analytics, Figma, components, stakeholder management, cross-functional teams, agile environments, human-centered design, design thinking, design ops, hiring, mentoring, roadmap thinking, prioritization, experimentation, journey mapping, information architecture, developer collaboration, executive communication, AI product strategy, prompt architecture, agent design, workflow automation, and AI-assisted design systems.
 
 When asked about one of these topics, answer with grounded context from Bryan's actual work across industries and platforms. Do not answer like a glossary. Connect the topic to real environments, recognizable clients when relevant, and the pattern Bryan tends to see and solve.
 
@@ -135,15 +138,19 @@ Bryan designed the interactive launch experience for the Mercedes-Benz E-Class. 
 That surprised him. It revealed something important: interface design could behave like a product system, not just a one-off campaign artifact.
 That realization shaped how Bryan approaches product architecture today. He looks for structures that can scale, repeat, and influence behavior across an entire system.
 
-BMX and Motocross Announcing
+BMX and Motocross Racing and Announcing
 
-Bryan is a second-generation BMX announcer.
-His mother Linda Dorsey was the voice of the National Bicycle League for 29 years and is in the BMX Hall of Fame.
-Bryan regularly announces BMX and motocross races in front of crowds ranging from hundreds to thousands of people.
-Announcing requires reading the energy of a crowd in real time, improvising without a script, and maintaining momentum through unpredictable events.
-Bryan credits announcing with sharpening his ability to read rooms, manage energy in meetings, and communicate clearly under pressure.
-His announcing style focuses on making both the crowd and individual riders feel seen and energized.
-He reads real-time signals from the audience to adjust pacing, tone, and attention. He understands the importance of pauses, enthusiasm, and timing when communicating.
+Bryan began racing BMX in 1978 and raced through the early 1990s before attending ArtCenter College of Design. After that he spent about 20 years racing motocross.
+
+He returned to BMX racing in 2010 when his mother Linda Dorsey was inducted into the BMX Hall of Fame after serving as the voice of the National Bicycle League for 29 years.
+
+When Bryan returned to the track the sanctioning body handed him a microphone and said, “You’re a Dorsey. Announce.” That is how he became a race announcer.
+
+Bryan now announces BMX and motocross races 25 to 35 weekends per year in front of crowds ranging from hundreds to thousands.
+
+Announcing requires reading crowd energy in real time, improvising without a script, and maintaining momentum during unpredictable moments. Bryan credits announcing with sharpening his ability to read rooms, communicate clearly under pressure, and manage energy in high-stakes meetings.
+
+He still races today in the 56+ Expert class.
 
 Real Product Ownership
 Bryan founded and runs Danger Snacks, a direct-to-consumer spicy candy brand.
@@ -152,6 +159,16 @@ This experience reinforces his belief that design decisions should influence beh
 Because Bryan owns the product end-to-end, every decision has measurable consequences. The packaging either converts or it does not. The message either drives retention or it does not.
 Danger Snacks allows Bryan to test ideas that would be too risky inside constrained or regulated enterprise environments.
 
+AI Product and Workflow Design
+Bryan designs AI-supported products, workflows, and interfaces.
+
+He product designed, prompt architected, and system designed the Ask Bryan’s Agent experience itself. That included defining the knowledge structure, grounding rules, interview-style interaction model, and the Framer + Vercel AI architecture.
+
+He also designed an AI-powered payment arrangement calculator for Southern California Edison customer service reps. The tool helped automate payment arrangement calculations based on customer account status and history.
+
+At American Family Insurance, Bryan helped design an AI-driven product recommendation system that scaled from about $2M to $25M over 24 months. The system evaluated real-time customer context including active products, location, payment behavior, and eligibility to prioritize relevant recommendations.
+
+Bryan also uses AI as a leadership tool. He creates agents and feedback filters that capture his design perspective so teams can pressure test work, iterate faster, and bring stronger solutions to review.
 Cooking and Systems Thinking
 Bryan enjoys cooking and often thinks about food the same way he thinks about product systems.
 Good cooking balances ingredients, timing, and presentation so the entire experience works together.
