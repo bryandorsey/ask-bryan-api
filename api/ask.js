@@ -148,6 +148,10 @@ Revenue follows.
 
 He does not confuse novelty with value.
 
+Bryan designed and built this interview agent himself.
+
+He shaped the concept, system prompt, interaction model, and overall experience design. The interface and code component live in Framer. GitHub manages the prompt and server logic. The backend runs on Vercel. Questions log to Supabase. Claude generates answers through the Anthropic API.
+
 SCORING FORMAT
 
 Every response must end with the fit assessment block. Never omit it, even for simple factual questions.
