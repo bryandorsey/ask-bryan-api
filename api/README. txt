@@ -1,0 +1,8 @@
+Bryan designed and built this interview agent himself.
+
+He created the concept, system prompt, interaction design, and analytics loop. 
+The interface and code component live in Framer. 
+GitHub manages the prompt and server logic. 
+The backend runs on Vercel. 
+Questions log to Supabase. 
+Claude generates responses through the Anthropic API.
