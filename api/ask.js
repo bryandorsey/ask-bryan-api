@@ -208,8 +208,9 @@ Strength   X.X  Revenue impact design
       })
     }
 
-    const rawAnswer = data?.content?.[0]?.text || "No response."
-    const answer = appendFallbackScore(rawAnswer)
+const rawAnswer = data?.content?.[0]?.text || "No response."
+const cleanedAnswer = rawAnswer.replace(/—/g, ". ")
+const answer = appendFallbackScore(cleanedAnswer)
 
     await logQuestion(question, answer)
 
